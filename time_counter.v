@@ -1,0 +1,132 @@
+// synopsys translate_off
+`timescale 1 ns / 1 ps
+// synopsys translate_on
+module time_counter(
+    rst_n,
+    clk,        
+    min_h,      
+    min_l,
+    sec_h,      
+    sec_l,
+    display_flag
+    );
+    
+    parameter   CLK_CYCLE = 20;                                        
+    parameter   T0        = 1000_000;                                 
+ 
+    parameter   T0_VAL    = T0/CLK_CYCLE-1;                            
+  
+    input                   rst_n;                                     
+    input                   clk;                                       
+    output reg  [2:0]       min_h;                   
+    output reg  [3:0]       min_l;                                     
+    output reg  [2:0]       sec_h;                                    
+    output reg  [3:0]       sec_l;                                     
+    output                  display_flag;  
+    wire 					delay_1ms;                            
+ 
+    reg [15:0]  cnt;
+    always@(posedge clk or negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            cnt <= (0);
+        else if(cnt < T0_VAL)
+            cnt <= cnt + 1'b1;
+        else
+            cnt <= (0);
+    end
+    assign  delay_1ms = (cnt == T0_VAL);                              
+    assign  display_flag = delay_1ms;                                 
+   
+    reg         [9:0]       mse;
+    always@(posedge clk or  negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            mse <= (0);
+        else
+        begin
+            if(delay_1ms == 1'b1)
+            begin
+                if(mse < 10'd999)
+                    mse <= mse + 1'b1;
+                else
+                    mse <= (0);
+            end
+        end
+    end
+    wire    sec_l_flag = ((mse == 10'd999) && (delay_1ms == 1'b1));      
+   
+    // sec count
+    always@(posedge clk or  negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            sec_l <= 0;
+        else
+        begin
+            if(sec_l_flag == 1'b1)
+            begin
+                if(sec_l < 4'd9)
+                    sec_l <= sec_l + 1'b1;
+                else
+                    sec_l <= 0;
+            end
+        end
+    end
+    wire    sec_h_flag = ((sec_l == 4'd9) && (sec_l_flag == 1'b1)); // sec carry  
+    
+    //  sec count (2)
+    always@(posedge clk or  negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            sec_h <= 0;
+        else
+        begin
+            if(sec_h_flag == 1'b1)
+            begin
+                if(sec_h < 3'd5)
+                    sec_h <= sec_h + 1'b1;
+                else
+                    sec_h <= 0;
+                end
+        end
+    end
+    wire    min_l_flag = ((sec_h == 3'd5) && (sec_h_flag == 1'b1)); // sec carry  
+    
+   
+    // min count
+    always@(posedge clk or  negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            min_l <= 0;
+        else
+        begin
+            if(min_l_flag == 1'b1)
+            begin
+                if(min_l < 4'd9)
+                    min_l <= min_l + 1'b1;
+                else
+                    min_l <= 0;
+            end
+        end
+    end
+    wire    min_h_flag = ((min_l == 4'd9) && (min_l_flag == 1'b1));//min carry
+    
+    //  min count (2)
+    always@(posedge clk or  negedge rst_n)
+    begin
+        if(rst_n == 1'b0)
+            min_h <= 0;
+        else
+        begin
+            if(min_h_flag == 1'b1)
+            begin
+                if(min_h < 3'd5)
+                    min_h <= min_h + 1'b1;
+                else
+                    min_h <= 0;
+            end
+        end
+    end
+   
+
+endmodule

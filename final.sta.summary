@@ -1,0 +1,101 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'clk'
+Slack : -4.626
+TNS   : -523.031
+
+Type  : Slow 1200mV 85C Model Setup 'random_btn'
+Slack : 0.234
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'random_btn'
+Slack : 0.130
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'clk'
+Slack : 0.338
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'clk'
+Slack : -3.755
+TNS   : -710.830
+
+Type  : Slow 1200mV 85C Model Removal 'clk'
+Slack : 3.473
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -209.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'random_btn'
+Slack : -3.000
+TNS   : -11.000
+
+Type  : Slow 1200mV 0C Model Setup 'clk'
+Slack : -4.042
+TNS   : -452.944
+
+Type  : Slow 1200mV 0C Model Setup 'random_btn'
+Slack : 0.382
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'random_btn'
+Slack : 0.067
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk'
+Slack : 0.292
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'clk'
+Slack : -3.292
+TNS   : -623.972
+
+Type  : Slow 1200mV 0C Model Removal 'clk'
+Slack : 3.174
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -209.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'random_btn'
+Slack : -3.000
+TNS   : -11.000
+
+Type  : Fast 1200mV 0C Model Setup 'clk'
+Slack : -2.206
+TNS   : -210.224
+
+Type  : Fast 1200mV 0C Model Setup 'random_btn'
+Slack : 0.525
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'random_btn'
+Slack : 0.075
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'clk'
+Slack : 0.167
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'clk'
+Slack : -1.746
+TNS   : -328.013
+
+Type  : Fast 1200mV 0C Model Removal 'clk'
+Slack : 1.929
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk'
+Slack : -3.000
+TNS   : -220.427
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'random_btn'
+Slack : -3.000
+TNS   : -12.208
+
+------------------------------------------------------------

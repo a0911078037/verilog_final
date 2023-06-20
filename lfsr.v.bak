@@ -1,0 +1,26 @@
+module lfsr(R, clk, seed);
+input clk, seed;
+reg out;
+output reg [7:0]R;
+reg [4:0]clk_count=0;
+
+always @ (posedge clk)
+begin
+	if(clk_count <= 10) 
+	begin	
+		out <= seed;
+		clk_count <= clk_count + 1b'1;
+	end
+	else out <= R[7] + R[6];
+	R[0]<=out;
+	R[1]<=R[0];
+	R[2]<=R[1];
+	R[3]<=R[2];
+	R[4]<=R[3];
+	R[5]<=R[4];
+	R[6]<=R[5];
+	R[7]<=R[6];
+end
+
+
+endmodule 
